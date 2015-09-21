@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}fizz_buzz{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+<!--     <h1>Index</h1> -->
+    <a href="{{url_for('secret')}}">Secret page</a>
+</div>
+<div>
+	<link rel="stylesheet" type="text/css" href="static/css/tag.css">
+	{% for post in posts %}
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	  <a href="#"><h1 class="panel-title"><strong>{{post[1]}}</strong></h1></a>
+	  </div>
+	  <div class="panel-body">
+	    {{post[2]}}
+	    <div>
+	    	<button type="button" class="btn btn-primary pull-right">Read</button>
+		</div>
+		<br>
+		<div class="tag">
+	    	<a href=""><span class="label label-primary">tag</span></a>
+	    	<a href=""><span class="label label-primary">another tag</span></a>
+	    	<a href=""><span class="label label-primary">one more tag</span></a>
+	    	<a href="#">Comments <span class="badge">42</span></a>
+		</div>
+	  </div>
+	</div>
+<!-- 	{#<p>Post id:{{ post[0] }}</p>
+	<p>Post title:{{ post[1] }}</p>
+	<p>Post short:{{ post[2] }}</p>
+	<p>Post body:{{ post[3] }}</p>
+	<p>Post time:{{ post[4] }}</p>
+	<p>Post author{{ post[5] }}</p>#} -->
+	{% endfor %}
+</div>
+{% endblock %}

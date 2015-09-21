@@ -1,0 +1,61 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}fizz_buzz{% endblock %}
+
+{% block navbar %}
+      <nav class="navbar navbar-inverse offset4">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{url_for('index')}}"><strong>fizzbuzz</strong></a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Github</a></li>
+                    <li><a href="#">Contact me</a></li>
+                    <li><a href="#">About me...</a></li>
+                    <li class="divider"></li>
+                    <li href="/" class="dropdown-header">Give back</li>
+                    <li><a href="#">Send a donation</a></li>
+                    <li class="divider"></li>
+                    {% if session['logged_in'] == True %}
+                    <li><a href="/logout">Logout</a></li>
+                    {% else %}
+                    <li><a href="/login">Login</a></li>
+                    {% endif %}
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+{%- with messages = get_flashed_messages(with_categories=True) -%}
+    {%- if messages -%}
+        <ul class=flashes>
+        {%- for category, message in messages -%}
+        <div class="container">
+            <div class="alert alert-{{category}}">
+<!--                 <a href="#" class="btn btn-xs btn-primary pull-right">do an action</a> -->
+                <center><strong>{%- if category == 'success' -%}✔{%- endif -%}&nbsp;{{ message }}</strong></center>
+            </div>
+        </div>
+        {%- endfor -%}
+    </ul>
+    {%- endif -%}
+{%- endwith -%}
+    {% block page_content %}{% endblock %}
+</div>
+{% endblock %}
